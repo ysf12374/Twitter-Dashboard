@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)https://www.chartjs.org/samples/latest/charts/bar/stacked.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Stacked Bar Chart</title>
+	<script async="" src="./Stacked Bar Chart_files/analytics.js"></script><script src="./Stacked Bar Chart_files/Chart.min.js"></script>
+	<script src="./Stacked Bar Chart_files/utils.js"></script>
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
+	</style>
+<style type="text/css">/* Chart.js */
+@keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style></head>
+ 
+<body>
+	<div style="width: 75%"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+		<canvas id="canvas" style="display: block; width: 962px; height: 481px;" width="962" height="481" class="chartjs-render-monitor"></canvas>
+	</div>
+	<button id="randomizeData">Randomize Data</button>
+	<script>
+	    var tweets_month = [{{ data.tweets_month|safe }}];
+	    var tweets_values_ksu= [{{data.tweets_values_ksu}}];
+	    var tweets_values_kauweb= [{{data.tweets_values_kauweb}}];
+	    var tweets_values_IMSIU_edu_sa= [{{data.tweets_values_IMSIU_edu_sa}}];
+	    var tweets_values_kkueduksa= [{{data.tweets_values_kkueduksa}}];
+	    var tweets_values_EdinburghUni= [{{data.tweets_values_EdinburghUni}}];
+	    var tweets_values_OfficialUoM= [{{data.tweets_values_OfficialUoM}}];
+	    var tweets_values_Harvard= [{{data.tweets_values_Harvard}}];
+	    var tweets_values_UChicago= [{{data.tweets_values_UChicago}}];
+	    
+		var barChartData = {
+			labels: tweets_month,
+			datasets: [{
+				label: '_KSU',
+				backgroundColor: window.chartColors.red,
+				data: tweets_values_ksu
+			}, {
+				label: 'kauweb',
+				backgroundColor: window.chartColors.blue,
+				data: tweets_values_kauweb
+			}, {
+				label: 'IMSIU_edu_sa',
+				backgroundColor: window.chartColors.green,
+				data: tweets_values_IMSIU_edu_sa
+			}
+			, {
+				label: 'kkueduksa',
+				backgroundColor: window.chartColors.green,
+				data: tweets_values_kkueduksa
+			}, {
+				label: 'EdinburghUni',
+				backgroundColor: window.chartColors.green,
+				data: tweets_values_EdinburghUni
+			}, {
+				label: 'OfficialUoM',
+				backgroundColor: window.chartColors.green,
+				data: tweets_values_OfficialUoM
+			}, {
+				label: 'Harvard',
+				backgroundColor: window.chartColors.green,
+				data: tweets_values_Harvard
+			}, {
+				label: 'UChicago',
+				backgroundColor: window.chartColors.green,
+				data: tweets_values_UChicago
+			}
+			]
+
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					title: {
+						display: true,
+						text: 'Chart.js Bar Chart - Stacked'
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+						}],
+						yAxes: [{
+							stacked: true
+						}]
+					}
+				}
+			});
+		};
+
+	</script>
+
+
+
+</body></html>
